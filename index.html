@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pista.js by urcoilbisurco</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pista.js</h1>
+        <p>Lightweight chart library for javascript</p>
+
+        <p class="view"><a href="https://github.com/urcoilbisurco/Pista.js">View the Project on GitHub <small>urcoilbisurco/Pista.js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/urcoilbisurco/Pista.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/urcoilbisurco/Pista.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/urcoilbisurco/Pista.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Pista.js</h1>
+
+<p>Lightweight time chart library for jquery/zepto.js.</p>
+
+<p>The goal is to have a 5-6kb library, easy to download also on mobile and that works well both with jquery and zepto. I need it for a new version of <a href="http://trackthisfor.me" title="trackthisfor.me">trackthisfor.me</a>.</p>
+
+<p>Therea are a lot of stuff that are missing (like the legend, and a non time x axis), but i don't want to add a lot of bloat. If you want to have a really customized library, use <a href="http://flotcharts.org/" title="Flot homepage">flot</a></p>
+
+<p>The usage is really easy (and borrowed from flot for some things).</p>
+
+<h2>Basic usage</h2>
+
+<p>Create a div that will be the container of the chart:</p>
+
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart"</span> <span class="na">style=</span><span class="s">"width:600px;height:300px"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>Remember to set the width and the height of this div (inline or in css code doesn't matter).</p>
+
+<p>You can also do it with an external stylesheet. Make sure that the
+placeholder isn't within something with a display:none CSS property -
+in that case, Flot has trouble measuring label dimensions which
+results in garbled looks and might have trouble measuring the
+placeholder dimensions which is fatal (it'll throw an exception).</p>
+
+<p>Then you only need to run this js code:</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">ph</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#chart"</span><span class="p">);</span>
+    <span class="nx">ph</span><span class="p">.</span><span class="nx">pista</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">tooltipCallback</span><span class="p">);</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>The 'data' is an array of data series in this format:</p>
+
+<div class="highlight"><pre>    <span class="p">[</span>   <span class="p">{</span> <span class="nx">name</span><span class="o">:</span><span class="s2">"first"</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">[</span>
+            <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">25</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/14/2012"</span><span class="p">},</span>
+            <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">32</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/15/2012"</span><span class="p">},</span>
+            <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">45</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/17/2012"</span><span class="p">}]</span>
+        <span class="p">},</span>
+        <span class="p">{</span> <span class="nx">name</span><span class="o">:</span><span class="s2">"second"</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">[</span>
+            <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">23</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/13/2012"</span><span class="p">},</span>
+            <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mf">26.6</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/18/2012"</span><span class="p">}]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>the 'options' is an object with all the options. These are the default options:</p>
+
+<div class="highlight"><pre><span class="nx">pista</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="nx">x</span><span class="o">:</span><span class="p">{</span><span class="nx">margin</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="kc">null</span><span class="p">},</span> 
+    <span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">margin</span><span class="o">:</span><span class="mf">0.2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="kc">null</span><span class="p">},</span>  
+    <span class="nx">goal</span><span class="o">:</span> <span class="p">{</span><span class="nx">show</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span><span class="mi">23</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span> <span class="s2">"#3BAFD7"</span><span class="p">},</span> 
+    <span class="nx">tooltip</span><span class="o">:</span> <span class="p">{</span><span class="nx">show</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">maxRadius</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span> 
+    <span class="nx">lines</span><span class="o">:</span> <span class="p">{</span><span class="nx">show</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">fill</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">curve</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="p">[</span><span class="s2">"#3BAFD7"</span><span class="p">,</span> <span class="s2">"#E1523D"</span><span class="p">],</span> <span class="nx">strokeWidth</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">fillOpacity</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="nx">fillColor</span><span class="o">:</span><span class="p">[</span><span class="s2">"#3BAFD7"</span><span class="p">,</span> <span class="s2">"#E1523D"</span><span class="p">]},</span>
+    <span class="nx">points</span><span class="o">:</span><span class="p">{</span><span class="nx">show</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">strokeWidth</span><span class="o">:</span><span class="mf">3.5</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="o">:</span><span class="p">[</span><span class="s2">"#3BAFD7"</span><span class="p">,</span> <span class="s2">"#E1523D"</span><span class="p">]},</span>
+    <span class="nx">labels</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">lineWidth</span><span class="o">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="nx">fontSize</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="nx">x</span><span class="o">:</span><span class="p">{</span><span class="nx">number</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">show</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span><span class="s2">"#858585"</span><span class="p">,</span> <span class="nx">grid</span><span class="o">:</span><span class="kc">false</span> <span class="p">},</span>
+        <span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">number</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span> <span class="nx">show</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span><span class="s2">"#858585"</span><span class="p">,</span> <span class="nx">grid</span><span class="o">:</span><span class="kc">true</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+
+</pre></div>
+
+<ul>
+<li>y.margin is a float number.</li>
+<li>x.min, x.max are in the MM/dd/yyyy format.</li>
+<li>the goal is a simple horizontal line that will be drawn on the goal.value</li>
+<li>tooltip.maxRadius is the max distance of the mouse from the point to call the tooltipCallback.</li>
+<li>every **Color object (strokeColor, fillColor...) is an array whose length is the number of data series.</li>
+<li>lines.curve draws the lines in a smoother way with the canvas quadraticCurveTo function.</li>
+</ul><p>the 'tooltipCallback' is a callback called everytime the mouse moves over the chart. An example of tooltipCallback can be this:</p>
+
+<div class="highlight"><pre>    <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">tool</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#tooltip"</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">found</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">tool</span><span class="p">.</span><span class="nx">length</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+                <span class="nx">tool</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"&lt;div id='tooltip'&gt;"</span><span class="p">);</span>
+                <span class="nx">tool</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"body"</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">point</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span><span class="nx">t</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageY</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="nx">t</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageX</span><span class="p">})</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>the t object is composed by:</p>
+
+<div class="highlight"><pre>    <span class="nx">t</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">found</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="nx">point</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">canvas_x</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">canvas_y</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span> <span class="s1">'date in millis'</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">'the value of the point'</span><span class="p">}</span>
+        <span class="nx">mouse</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="s1">'x of the mouse (in the document)'</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="err">'</span><span class="nx">y</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">mouse</span> <span class="p">(</span><span class="k">in</span> <span class="nx">the</span> <span class="nb">document</span><span class="p">)}</span>
+    <span class="p">}</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/urcoilbisurco">urcoilbisurco</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
