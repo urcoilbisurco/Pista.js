@@ -32,9 +32,10 @@
 
 <p>Lightweight time chart library for jquery/zepto.js.</p>
 
-<p>The goal is to have a 5-6kb library, easy to download also on mobile and that works well both with jquery and zepto. I need it for a new version of <a href="http://trackthisfor.me" title="trackthisfor.me">trackthisfor.me</a>.</p>
+<p>The goal is to have a 5-6kb library, easy to download also on mobile and that works well both with jquery and zepto.
+I need it for a new version of <a href="http://trackthisfor.me" title="trackthisfor.me">trackthisfor.me</a>.</p>
 
-<p>Therea are a lot of stuff that are missing (like the legend, and a non time x axis), but i don't want to add a lot of bloat. If you want to have a really customized library, use <a href="http://flotcharts.org/" title="Flot homepage">flot</a></p>
+<p>Therea are a lot of stuff that are missing (like the legend, and a non-time xaxis), but i don't want to add a lot of bloat. If you want to have a really customized library, use <a href="http://flotcharts.org/" title="Flot homepage">flot</a>.</p>
 
 <p>The usage is really easy (and borrowed from flot for some things).</p>
 
@@ -42,22 +43,13 @@
 
 <p>Create a div that will be the container of the chart:</p>
 
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart"</span> <span class="na">style=</span><span class="s">"width:600px;height:300px"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart"</span><span class="nt">&gt;&lt;/div&gt;</span>
 </pre></div>
-
-<p>Remember to set the width and the height of this div (inline or in css code doesn't matter).</p>
-
-<p>You can also do it with an external stylesheet. Make sure that the
-placeholder isn't within something with a display:none CSS property -
-in that case, Flot has trouble measuring label dimensions which
-results in garbled looks and might have trouble measuring the
-placeholder dimensions which is fatal (it'll throw an exception).</p>
 
 <p>Then you only need to run this js code:</p>
 
 <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">ph</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#chart"</span><span class="p">);</span>
-    <span class="nx">ph</span><span class="p">.</span><span class="nx">pista</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">tooltipCallback</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"#chart"</span><span class="p">).</span><span class="nx">pista</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">tooltipCallback</span><span class="p">);</span>
 <span class="p">})</span>
 </pre></div>
 
@@ -74,7 +66,7 @@ placeholder dimensions which is fatal (it'll throw an exception).</p>
             <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">23</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/13/2012"</span><span class="p">},</span>
             <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mf">26.6</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span><span class="s2">"12/18/2012"</span><span class="p">}]</span>
         <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="p">]</span>
 </pre></div>
 
 <p>the 'options' is an object with all the options. These are the default options:</p>
@@ -108,17 +100,14 @@ placeholder dimensions which is fatal (it'll throw an exception).</p>
 <li>lines.curve draws the lines in a smoother way with the canvas quadraticCurveTo function.</li>
 </ul><p>the 'tooltipCallback' is a callback called everytime the mouse moves over the chart. An example of tooltipCallback can be this:</p>
 
-<div class="highlight"><pre>    <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span>
-        <span class="kd">var</span> <span class="nx">tool</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#tooltip"</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">found</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">tool</span><span class="p">.</span><span class="nx">length</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-                <span class="nx">tool</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"&lt;div id='tooltip'&gt;"</span><span class="p">);</span>
-                <span class="nx">tool</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"body"</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="nx">tool</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">point</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-            <span class="nx">tool</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span><span class="nx">t</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageY</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="nx">t</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageX</span><span class="p">})</span>
+<div class="highlight"><pre>    <span class="kd">function</span><span class="p">(</span><span class="nx">tooltip</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">tooltip</span><span class="p">.</span><span class="nx">found</span><span class="p">){</span>
+            <span class="nx">tool</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">"&lt;div id='tooltip'&gt;"</span><span class="p">);</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"body"</span><span class="p">);</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">tooltip</span><span class="p">.</span><span class="nx">point</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+            <span class="nx">tool</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span><span class="nx">tooltip</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageY</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="nx">tooltip</span><span class="p">.</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">pageX</span><span class="p">})</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">tool</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s2">"#tooltip"</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
 </pre></div>
@@ -128,7 +117,7 @@ placeholder dimensions which is fatal (it'll throw an exception).</p>
 <div class="highlight"><pre>    <span class="nx">t</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">found</span><span class="o">:</span> <span class="kc">false</span>
         <span class="nx">point</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">canvas_x</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">canvas_y</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span> <span class="s1">'date in millis'</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">'the value of the point'</span><span class="p">}</span>
-        <span class="nx">mouse</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="s1">'x of the mouse (in the document)'</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="err">'</span><span class="nx">y</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">mouse</span> <span class="p">(</span><span class="k">in</span> <span class="nx">the</span> <span class="nb">document</span><span class="p">)}</span>
+        <span class="nx">mouse</span><span class="o">:</span> <span class="p">{</span> <span class="nx">pageX</span><span class="o">:</span> <span class="s1">'x of the mouse (in the document)'</span><span class="p">,</span> <span class="nx">pageY</span><span class="o">:</span> <span class="s1">'y of the mouse (in the document)'</span><span class="p">}</span>
     <span class="p">}</span>
 </pre></div>
       </section>
