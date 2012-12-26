@@ -1,11 +1,12 @@
-Flux.js
+Pista.js
 =======
 
 Lightweight time chart library for jquery/zepto.js.
 
-The goal is to have a 5-6kb library, easy to download also on mobile and that works well both with jquery and zepto. I need it for a new version of [trackthisfor.me](http://trackthisfor.me "trackthisfor.me").
+The goal is to have a 5-6kb library, easy to download also on mobile and that works well both with jquery and zepto.
+I need it for a new version of [trackthisfor.me](http://trackthisfor.me "trackthisfor.me").
 
-Therea are a lot of stuff that are missing (like the legend, and a non time x axis), but i don't want to add a lot of bloat. If you want to have a really customized library, use [flot](http://flotcharts.org/ "Flot homepage")
+Therea are a lot of stuff that are missing (like the legend, and a non-time xaxis), but i don't want to add a lot of bloat. If you want to have a really customized library, use [flot](http://flotcharts.org/ "Flot homepage").
 
 
 The usage is really easy (and borrowed from flot for some things).
@@ -30,8 +31,7 @@ Then you only need to run this js code:
 
 ```js
 $(function(){
-	var ph=$("#chart");
-	ph.pista(data, options, tooltipCallback);
+	$("#chart").pista(data, options, tooltipCallback);
 })
 ```
 
@@ -49,7 +49,7 @@ The 'data' is an array of data series in this format:
 			{value:23, date:"12/13/2012"},
 			{value:26.6, date:"12/18/2012"}]
 		}
-	}
+	]
 ```
 
 the 'options' is an object with all the options. These are the default options:
@@ -88,17 +88,14 @@ the 'tooltipCallback' is a callback called everytime the mouse moves over the ch
 
 
 ```js
-	function(t){
-		var tool=$("#tooltip");
-		if(t.found){
-			if(tool.length==0){
-				tool=$("<div id='tooltip'>");
-				tool.appendTo("body");
-			}
-			tool.html(t.point.value);
-			tool.css({top:t.mouse.pageY-40, left: t.mouse.pageX})
+	function(tooltip){
+		if(tooltip.found){
+			tool=$("<div id='tooltip'>");
+			tool.appendTo("body");
+			tool.html(tooltip.point.value);
+			tool.css({top:tooltip.mouse.pageY-40, left: tooltip.mouse.pageX})
 		}else{
-			tool.remove();
+			$("#tooltip").remove();
 		}
 	}
 ```
@@ -109,6 +106,6 @@ the t object is composed by:
 	t = {
 		found: false
 		point: { x: canvas_x, y: canvas_y, date: 'date in millis', value: 'the value of the point'}
-		mouse: { x: 'x of the mouse (in the document)', y: 'y of the mouse (in the document)}
+		mouse: { pageX: 'x of the mouse (in the document)', pageY: 'y of the mouse (in the document)'}
 	}
 ```	
