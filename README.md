@@ -16,16 +16,8 @@ The usage is really easy (and borrowed from flot for some things).
 Create a div that will be the container of the chart:
 
 ```html
-<div id="chart" style="width:600px;height:300px"></div>
+<div id="chart"></div>
 ```
-
-Remember to set the width and the height of this div (inline or in css code doesn't matter).
-
-You can also do it with an external stylesheet. Make sure that the
-placeholder isn't within something with a display:none CSS property -
-in that case, Flot has trouble measuring label dimensions which
-results in garbled looks and might have trouble measuring the
-placeholder dimensions which is fatal (it'll throw an exception).
 
 Then you only need to run this js code:
 
