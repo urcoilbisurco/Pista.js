@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="../jquery.pista.js" type="text/javascript" charset="utf-8"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="content">
+    <h1>Pista.js</h1>
+    <p>Lightweight time chart library for jquery/zepto.js.<br/></p>
+    <a target="_blank" href="https://github.com/urcoilbisurco/Pista.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <!-- Place this tag where you want the button to render. -->
+    <a class="github-button" href="https://github.com/urcoilbisurco/Pista.js" data-style="mega">Download on Github</a>
+    
+    
+    <h3>Basic chart</h3>
+    <div id="basic"></div>
+    
+
+    <h3>Multi lines chart</h3>
+    <div id="multi"></div>    
+    
+
+    <h3>Curve lines chart</h3>
+    <div id="curve"></div>
+    
+    
+
+    <h3>Chart with goal</h3>
+    <div id="goal"></div>
+    
+    
+
+    <h3>Custom Y</h3>
+    <div id="custom"></div>
+    
+    
+    
+    <script>
+
+    $(document).ready(function(){
+      var data= [   { name:"first",
+          data:[
+              {value:12, date:"12/14/2014"},
+              {value:32, date:"12/15/2014"},
+              {value:56, date:"12/17/2014"},
+              {value:45, date:"12/19/2014"}
+            
+            ]
+          }
+      ]
+    
+      // Basic
+      options={
+        height: 150,
+        width: 600,
+        lines:{fill:false, strokeColor: ["#3BAFD7", "#E1523D"]}
+      }
+      $("#basic").pista(data, options);
+      
+    
+    data= [   { name:"first",
+      data:[
+          {value:12, date:"12/14/2014"},
+          {value:32, date:"12/15/2014"},
+          {value:56, date:"12/17/2014"},
+          {value:45, date:"12/19/2014"}
+        
+        ]
+      },
+      { name:"second",
+      data:[
+          {value:13, date:"12/13/2014"},
+          {value:30, date:"12/15/2014"},
+          {value:26.6, date:"12/18/2014"},
+          {value:33, date:"12/19/2014"}
+        
+        ]
+      }
+  ]
+  // Multiple lines
+  options={
+    height: 150,
+    width: 600,
+    lines:{fill:false, strokeColor: ["#3BAFD7", "#E1523D"]}
+  }
+  $("#multi").pista(data, options);
+      
+      
+      
+      // Curve chart
+      options={
+        height: 150,
+        width: 600,
+        lines:{fill:false, curve:true, strokeColor: ["#3BAFD7", "#E1523D"]}
+      }
+      $("#curve").pista(data, options);
+      
+      // Goal chart
+      options={
+        height: 150,
+        width: 600,
+        goal: {show:true, value:23},
+        lines:{fill:false, strokeColor: ["#3BAFD7", "#E1523D"]}
+      }
+      $("#goal").pista(data, options);
+      
+      
+      // Goal chart
+      options={
+        height: 150,
+        width: 600,
+	      y:{margin:0.2, min:0, max:100},
+        goal: {show:true, value:23},
+        lines:{fill:false, strokeColor: ["#3BAFD7", "#E1523D"]}
+      }
+      $("#custom").pista(data, options);
+      
+    });
+    </script>
+    <!-- Place this tag right after the last button or just before your close body tag. -->
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

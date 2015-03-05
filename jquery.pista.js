@@ -61,7 +61,6 @@
 		y.marginMin=y.min-y.min*_y.margin;
 		y.marginMax=y.max+y.max*_y.margin;
 		y.margin= (y.marginMax-y.marginMin)*_y.margin
-		log("margin", y.margin)
 		return y;
 		},
 		
@@ -111,10 +110,10 @@
       width: 100,
 	  x:{margin:15, min: null, max:null},
 	  y:{margin:0.2, min:null, max:null},
-	  goal: {show:true, value:23, color: mainColor},
+	  goal: {show:false, value:23, color: mainColor},
 	  tooltip: {show:true, maxRadius: 3},
-	  lines: {show: true, fill: true, curve:true, strokeColor: [mainColor, secondaryColor], strokeWidth: 4, fillOpacity: 0.7, fillColor:[mainColor, secondaryColor]},
-	  points:{show:true, strokeWidth:3.5, strokeColor:[mainColor, secondaryColor]},
+	  lines: {show: true, fill: false, curve:false, strokeColor: [mainColor, secondaryColor], strokeWidth: 4, fillOpacity: 0.7, fillColor:[mainColor, secondaryColor]},
+	  points:{show: true, strokeWidth:3.5, strokeColor:[mainColor, secondaryColor]},
 	  labels:{
 		  lineWidth: 0.3,
 		  fontSize: 11,
@@ -171,8 +170,6 @@
 				v={y: canvasHeight-labelHeight*i, value: (y.marginMin+(add*i)).toFixed(2)}
 				y.labels.push(v)
 				context.fillText(v.value,1,v.y+3);
-				
-				
 				//get the most long length to calculate the x.marginLeft
 				if(i==0){yMaxLength=v.value.length}else{yMaxLength=Math.max(v.value.length, yMaxLength)}
 			}
@@ -345,12 +342,12 @@
 							point=g_coords[c][i];
 							if((Math.abs(point.x-mouse.x)<opts.points.strokeWidth*opts.tooltip.maxRadius) & (Math.abs(point.y-mouse.y)<opts.points.strokeWidth*opts.tooltip.maxRadius)){
 								notFound=false;
-								cb({found:true, point: point, mouse: e});
+								if(cb){cb({found:true, point: point, mouse: e})};
 							}
 						}
 					}
 					
-					if(notFound){cb({found:false})}
+					if(notFound && cb){cb({found:false})}
 					
 				}, false);
 			}

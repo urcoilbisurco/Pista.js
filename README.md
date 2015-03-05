@@ -32,14 +32,14 @@ The 'data' is an array of data series in this format:
 ```js
 	[	{ name:"first",
 		data:[
-			{value:25, date:"12/14/2012"},
-			{value:32, date:"12/15/2012"},
-			{value:45, date:"12/17/2012"}]
+			{value:25, date:"12/14/2014"},
+			{value:32, date:"12/15/2014"},
+			{value:45, date:"12/17/2014"}]
 		},
 		{ name:"second",
 		data:[
-			{value:23, date:"12/13/2012"},
-			{value:26.6, date:"12/18/2012"}]
+			{value:23, date:"12/13/2014"},
+			{value:26.6, date:"12/18/2014"}]
 		}
 	]
 ```
@@ -48,21 +48,20 @@ the 'options' is an object with all the options. These are the default options:
 
 ```js
 pista.defaults = {
-    height: 100,
-    width: 100,
-  	x:{margin:15, min: null, max:null}, 
-  	y:{margin:0.2, min:null, max:null},  
-  	goal: {show:true, value:23, color: "#3BAFD7"}, 
-  	tooltip: {show:true, maxRadius: 3}, 
-  	lines: {show: true, fill: true, curve:true, strokeColor: ["#3BAFD7", "#E1523D"], strokeWidth: 4, fillOpacity: 0.7, fillColor:["#3BAFD7", "#E1523D"]},
-  	points:{show:true, strokeWidth:3.5, strokeColor:["#3BAFD7", "#E1523D"]},
-  	labels:{
-		lineWidth: 0.3,
-	  	fontSize: 11,
-	  	x:{number: 7, show:true, color:"#858585", grid:false },
-	  	y:{number:4, show:true, color:"#858585", grid:true}
-	}
-  };
+      height: 100,
+      width: 100,
+	  x:{margin:15, min: null, max:null},
+	  y:{margin:0.2, min:null, max:null},
+	  goal: {show:false, value:23, color: mainColor},
+	  tooltip: {show:true, maxRadius: 3},
+	  lines: {show: true, fill: false, curve:false, strokeColor: [mainColor, secondaryColor], strokeWidth: 4, fillOpacity: 0.7, fillColor:[mainColor, secondaryColor]},
+	  points:{show: true, strokeWidth:3.5, strokeColor:[mainColor, secondaryColor]},
+	  labels:{
+		  lineWidth: 0.3,
+		  fontSize: 11,
+		  x:{number: 7, show:true, color:"#858585", grid:false },
+		  y:{number:4, show:true, color:"#858585", grid:true}}
+    };
 
 
 ```
