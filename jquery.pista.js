@@ -1,5 +1,5 @@
-// Pista jQuery/zepto plugin version 0.1
-// (c) 2012 Francesco Marassi
+// Pista jQuery/zepto plugin version 0.2
+// (c) 2012-2015 Francesco Marassi
 // This work is licensed under the MIT License.
 
 
@@ -112,7 +112,7 @@
 	  y:{margin:0.2, min:null, max:null},
 	  goal: {show:false, value:23, color: mainColor},
 	  tooltip: {show:true, maxRadius: 3},
-	  lines: {show: true, fill: false, curve:false, strokeColor: [mainColor, secondaryColor], strokeWidth: 4, fillOpacity: 0.7, fillColor:[mainColor, secondaryColor]},
+	  lines: {show: true, fill: false, curve:false, strokeColor: [mainColor, secondaryColor], strokeWidth: 4, fillOpacity: 0.4, fillColor:[mainColor, secondaryColor]},
 	  points:{show: true, strokeWidth:3.5, strokeColor:[mainColor, secondaryColor]},
 	  labels:{
 		  lineWidth: 0.3,

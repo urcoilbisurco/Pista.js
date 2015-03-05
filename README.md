@@ -8,6 +8,8 @@ I need it for a new version of [trackthisfor.me](http://trackthisfor.me "trackth
 
 Therea are a lot of stuff that are missing (like the legend, and a non-time xaxis), but i don't want to add a lot of bloat. If you want to have a really customized library, use [flot](http://flotcharts.org/ "Flot homepage").
 
+[DEMO](http://codepen.io/anon/pen/myGbea)
+
 
 The usage is really easy (and borrowed from flot for some things).
 
